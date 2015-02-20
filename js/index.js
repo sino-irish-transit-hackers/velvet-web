@@ -10,7 +10,7 @@ function draw(){
 	ctx.translate(180, 0);
 	ctx.scale(scaleFactor, scaleFactor);
 	
-	ctx.lineWidth = 10.0/Math.max(1.0, scaleFactor);
+	ctx.lineWidth = 11.0/Math.max(1.0, scaleFactor);
 	ctx.strokeStyle = "rgba(0,100,255,1)";
 	ctx.beginPath();
 	ctx.moveTo(0,0);
@@ -25,7 +25,7 @@ function draw(){
 	ctx.closePath();
 	
 	ctx.lineWidth = 10.0;
-	ctx.strokeStyle = "rgba(0,100,255,"+(3/scaleFactor)+")";
+	ctx.strokeStyle = "rgba(0,100,255,"+(1/scaleFactor)+")";
 	ctx.beginPath();
 	ctx.moveTo(2,0);
 	ctx.lineTo(2,200);
@@ -35,20 +35,28 @@ function draw(){
 	
 	ctx.textAlign = "center";
 	ctx.font = (10/scaleFactor) + "px sans-serif";
-	
-	ctx.fillStyle = "rgba(255,255,255,1.0)";
-	ctx.fillText("C", 2, 10);
-	
-	ctx.fillStyle = "rgba(255,255,255,"+((scaleFactor/5.0)-0.5)+")";
+		
+	ctx.fillStyle = "rgba(255,255,255,"+((scaleFactor/3.0)-0.5)+")";
 	ctx.fillText("D", 0, 5);
-	ctx.fillText("D", 0, 15);
 	ctx.fillText("D", 0, 25);
-	ctx.fillText("D", 0, 35);
+	ctx.fillText("D", 0, 45);
+	ctx.fillText("D", 0, 65);
+	ctx.fillText("D", 0, 85);
+	ctx.fillText("D", 0, 105);
+	ctx.fillText("D", 0, 125);
 	
 	ctx.fillText("U", 4, 5);
-	ctx.fillText("U", 4, 15);
 	ctx.fillText("U", 4, 25);
-	ctx.fillText("U", 4, 35);
+	ctx.fillText("U", 4, 45);
+	ctx.fillText("U", 4, 65);
+	ctx.fillText("U", 4, 85);
+	ctx.fillText("U", 4, 105);
+	ctx.fillText("U", 4, 125);
+	
+	ctx.fillStyle = "rgba(255,255,255,1.0)";
+	ctx.shadowColor = "rgba(0,100,255,1)";
+	ctx.shadowBlur = 6;
+	ctx.fillText("A", 2, 35);
 	
 	ctx.restore();
 }
@@ -63,12 +71,12 @@ $(document).ready(function(){
 	
 	$(canvas).bind("mousewheel",function(ev){
 		if( ev.originalEvent.wheelDelta > 0 ){
-			if( scaleFactor < 5.0 ){
-				scaleFactor += .05;
+			if( scaleFactor < 3.0 ){
+				scaleFactor += .08;
 			}
 		} else if( ev.originalEvent.wheelDelta < 1 ){
-			if( scaleFactor > 0.5){
-				scaleFactor -= .05;
+			if( scaleFactor > 1.0){
+				scaleFactor -= .08;
 			}
 		}
 		draw();
