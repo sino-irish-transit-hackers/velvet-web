@@ -81,4 +81,33 @@ $(document).ready(function(){
 		}
 		draw();
 	});
+	
+	var touchDistance = null;
+	canvas.addEventListener("touchmove", function(ev){
+		evt.preventDefault();
+		if( ev.targetTouches.length > 1 ){
+			var distX = ev.targetTouches[1].pageX - ev.targetTouches[0].pageX;
+			var distY = ev.targetTouches[1].pageY - ev.targetTouches[0].pageY;
+			var newTouchDistance = Math.sqrt(Math.pow(distX,2) + Math.pow(distY,2));
+			if( touchDistance !== null ){
+				if( newTouchDistance > touchDistance ){
+					scaleFactor += .08;
+				} else if( newTouchDistance < touchDistance ) {
+					scaleFactor -= .08;
+				}
+			}
+			touchDistance = newTouchDistance;
+		}
+	});
+	
+	var touchEnder = function(ev){
+		ev.preventDefault();
+		if( ev.targetTouches.length <= 1 ){
+			touchDistance = null;
+		}
+	};
+	canvas.addEventListener("touchend", touchEnder);
+	canvas.addEventListener("touchleave", touchEnder);
+	canvas.addEventListener("touchcancel", touchEnder);
+	
 });
