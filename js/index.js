@@ -83,8 +83,9 @@ $(document).ready(function(){
 	});
 	
 	var touchDistance = null;
-	canvas.addEventListener("touchmove", function(ev){
+	document.addEventListener("touchmove", function(ev){
 		ev.preventDefault();
+		console.log("touchmove");
 		if( ev.targetTouches.length > 1 ){
 			var distX = ev.targetTouches[1].pageX - ev.targetTouches[0].pageX;
 			var distY = ev.targetTouches[1].pageY - ev.targetTouches[0].pageY;
@@ -101,13 +102,15 @@ $(document).ready(function(){
 	});
 	
 	var touchEnder = function(ev){
-		ev.preventDefault();
+		if( ev.cancelable ){
+			ev.preventDefault();
+		}
 		if( ev.targetTouches.length <= 1 ){
 			touchDistance = null;
 		}
 	};
-	canvas.addEventListener("touchend", touchEnder);
-	canvas.addEventListener("touchleave", touchEnder);
-	canvas.addEventListener("touchcancel", touchEnder);
+	document.addEventListener("touchend", touchEnder);
+	document.addEventListener("touchleave", touchEnder);
+	document.addEventListener("touchcancel", touchEnder);
 	
 });
