@@ -99,6 +99,7 @@ $(document).ready(function(){
 						scaleFactor -= .08;
 					}
 				}
+				draw();
 			}
 			touchDistance = newTouchDistance;
 		}
