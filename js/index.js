@@ -84,7 +84,7 @@ $(document).ready(function(){
 	
 	var touchDistance = null;
 	canvas.addEventListener("touchmove", function(ev){
-		evt.preventDefault();
+		ev.preventDefault();
 		if( ev.targetTouches.length > 1 ){
 			var distX = ev.targetTouches[1].pageX - ev.targetTouches[0].pageX;
 			var distY = ev.targetTouches[1].pageY - ev.targetTouches[0].pageY;
