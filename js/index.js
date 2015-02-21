@@ -85,16 +85,19 @@ $(document).ready(function(){
 	var touchDistance = null;
 	document.addEventListener("touchmove", function(ev){
 		ev.preventDefault();
-		console.log("touchmove");
 		if( ev.targetTouches.length > 1 ){
 			var distX = ev.targetTouches[1].pageX - ev.targetTouches[0].pageX;
 			var distY = ev.targetTouches[1].pageY - ev.targetTouches[0].pageY;
 			var newTouchDistance = Math.sqrt(Math.pow(distX,2) + Math.pow(distY,2));
 			if( touchDistance !== null ){
 				if( newTouchDistance > touchDistance ){
-					scaleFactor += .08;
+					if( scaleFactor < 3.0 ){
+						scaleFactor += .08;
+					}
 				} else if( newTouchDistance < touchDistance ) {
-					scaleFactor -= .08;
+					if( scaleFactor > 1.0){
+						scaleFactor -= .08;
+					}
 				}
 			}
 			touchDistance = newTouchDistance;
